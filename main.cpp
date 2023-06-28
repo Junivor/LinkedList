@@ -1,20 +1,16 @@
 #include "thuvien.h"
 int main() {
-    nodePtr head;
-    TYPEINFO dem = 0;
+    nodePtr h;
+    nodePtr hChan;
+    nodePtr hLe;
 
-    themDau(head, 10);
-    themDau(head, 20);
-    themDau(head, 30);
-    themCuoi(head, 100);
-    themSauHead(head, 300);
-//    xoaDau(head);
-//    xoaCuoi(head);
-//    xoaX(head, 20);
+    themDau(h, 10);
+    themDau(h, 20);
+    themDau(h, 30);
+    themCuoi(h, 40);
+    themCuoi(h, 50);
+    chenSauH(h, 100);
 
-    demNode(head, dem);
-    vitriNode(head, dem);
-    nodeChinhXac(head, 20);
-    print(head);
+    print(h);
     return 0;
 }

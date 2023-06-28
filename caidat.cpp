@@ -1,8 +1,4 @@
 #include "thuvien.h"
-void khoiTao(nodePtr &head) {
-    head = NULL;
-}
-
 nodePtr taoNode(TYPEINFO x) {
     nodePtr n = new node;
     n -> data = x;
@@ -10,16 +6,16 @@ nodePtr taoNode(TYPEINFO x) {
     return n;
 }
 
-void themDau(nodePtr &head, TYPEINFO x) {
+void themDau(nodePtr &h, TYPEINFO x) {
     nodePtr n = taoNode(x);
-    n -> link = head;
-    head = n;
+    n -> link = h;
+    h = n;
 }
 
-void themCuoi(nodePtr &head, TYPEINFO x) {
-    nodePtr t = head;
+void themCuoi(nodePtr &h, TYPEINFO x) {
+    nodePtr t = h;
     nodePtr n = taoNode(x);
-    if (head == NULL) head = n;
+    if (h == NULL) h = n;
     else {
         while (t -> link != NULL) {
             t = t -> link;
@@ -28,27 +24,40 @@ void themCuoi(nodePtr &head, TYPEINFO x) {
     }
 }
 
-void themSauHead(nodePtr &head, TYPEINFO x) {
-    nodePtr t = head;
+void chenSauH(nodePtr &h, TYPEINFO x) {
+    nodePtr t = h;
     nodePtr n = taoNode(x);
-    if (head == NULL) head = n;
+    if (h == NULL) h = n;
     else {
         n -> link = t -> link;
         t -> link = n;
     }
 }
 
-void xoaDau(nodePtr &head) {
-    nodePtr t = head;
-    head = head -> link;
+void hoanDoi(nodePtr &h) {
+    nodePtr current = h;
+    nodePtr next = NULL;
+    nodePtr prev = NULL;
+    while (current != NULL) {
+        next = current -> link;
+        current -> link = prev;
+        prev = current;
+        current = next;
+    }
+    h = prev;
+}
+
+void xoaDau(nodePtr &h) {
+    nodePtr t = h;
+    h = h -> link;
     delete t;
 }
 
-void xoaCuoi(nodePtr &head) {
-    nodePtr t = head;
-    if (head == NULL) return;
+void xoaCuoi(nodePtr &h) {
+    nodePtr t = h;
+    if (h == NULL) return;
     else {
-        while (t -> link -> link != NULL) {
+        while (t -> link -> link ) {
             t = t -> link;
         }
         delete t -> link;
@@ -56,56 +65,28 @@ void xoaCuoi(nodePtr &head) {
     }
 }
 
-void xoaX(nodePtr &head, TYPEINFO x) {
-    nodePtr t = head;
+void xoaX(nodePtr &h, TYPEINFO x) {
+    nodePtr t = h;
     nodePtr before = NULL;
-    if (head == NULL) return;
-    if (head -> data == x) xoaDau(head);
+    if (t == NULL) return;
+    if (h -> data == x) xoaDau(h);
     else {
-        while (t != NULL && t -> data != x) {
+        while (t -> link != NULL && t -> data != x) {
             before = t;
             t = t -> link;
         }
         if (t != NULL) {
             before -> link = t -> link;
-            delete t;
+            t -> link = before;
         }
     }
 }
 
-void demNode(nodePtr &head, TYPEINFO &dem) {
-    nodePtr t = head;
-    while (t != NULL) {
-        dem++;
-        t = t -> link;
-    }
-    cout << "Trong list tren co: " << dem << " node" << endl;
-}
-
-void vitriNode(nodePtr head, TYPEINFO dem) {
-    nodePtr t = head;
-    for (int i = 0; i < dem; i++) {
-        cout << "(" << i << ")" << t -> data << " ";
-        t = t -> link;
-    }
-    cout << endl;
-}
-
-void nodeChinhXac(nodePtr head, TYPEINFO x) {
-    nodePtr t = head;
-    int dem = 0;
-    while (t != NULL && t -> data != x) {
-        t = t -> link;
-        dem++;
-    }
-    cout << "(" << dem << ")" <<  t -> data << endl;
-
-}
-
-void print(nodePtr head) {
-    nodePtr t = head;
+void print(nodePtr h) {
+    nodePtr t = h;
     while (t != NULL) {
         cout << t -> data << " ";
         t = t -> link;
     }
+    cout << endl;
 }

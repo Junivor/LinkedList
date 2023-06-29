@@ -82,6 +82,17 @@ void xoaX(nodePtr &h, TYPEINFO x) {
     }
 }
 
+void themChanLe(nodePtr &h, nodePtr &hChan, nodePtr &hLe) {
+    nodePtr t = h;
+    for(; t != NULL; t = t -> link) {
+        if (t -> data % 2 == 0) {
+            themCuoi(hChan, t -> data);
+        } else {
+            themCuoi(hLe, t -> data);
+        }
+    }
+}
+
 void print(nodePtr h) {
     nodePtr t = h;
     while (t != NULL) {

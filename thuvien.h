@@ -14,7 +14,7 @@ void xoaCuoi(nodePtr &h);
 void xoaX(nodePtr &h, TYPEINFO x);
 void demNode(nodePtr h, TYPEINFO &dem);
 void hoanDoi(nodePtr &h);
-void themChan(nodePtr &h, nodePtr &hChan);
+void themChanLe(nodePtr &h, nodePtr &hChan, nodePtr &hLe);
 void print(nodePtr h);
 
 

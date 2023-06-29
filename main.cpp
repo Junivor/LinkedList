@@ -5,11 +5,11 @@ int main() {
     nodePtr hLe = NULL;
 
     themDau(h, 10);
-    themDau(h, 20);
-    themDau(h, 30);
-    themCuoi(h, 40);
-    themCuoi(h, 50);
-    chenSauH(h, 100);
+    themDau(h, 23);
+    themDau(h, 32);
+    themCuoi(h, 41);
+    themCuoi(h, 55);
+    chenSauH(h, 101);
     themChanLe(h, hChan, hLe);
 
     print(h);

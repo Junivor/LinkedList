@@ -34,30 +34,20 @@ void chenSauH(nodePtr &h, TYPEINFO x) {
     }
 }
 
-void hoanDoi(nodePtr &h) {
-    nodePtr current = h;
-    nodePtr next = NULL;
-    nodePtr prev = NULL;
-    while (current != NULL) {
-        next = current -> link;
-        current -> link = prev;
-        prev = current;
-        current = next;
-    }
-    h = prev;
-}
-
 void xoaDau(nodePtr &h) {
     nodePtr t = h;
-    h = h -> link;
-    delete t;
+    if (h == NULL) return;
+    else {
+        h = h -> link;
+        delete t;
+    }
 }
 
 void xoaCuoi(nodePtr &h) {
     nodePtr t = h;
     if (h == NULL) return;
     else {
-        while (t -> link -> link ) {
+        while (t -> link -> link != NULL) {
             t = t -> link;
         }
         delete t -> link;
@@ -68,10 +58,10 @@ void xoaCuoi(nodePtr &h) {
 void xoaX(nodePtr &h, TYPEINFO x) {
     nodePtr t = h;
     nodePtr before = NULL;
-    if (t == NULL) return;
+    if (h == NULL) return;
     if (h -> data == x) xoaDau(h);
     else {
-        while (t -> link != NULL && t -> data != x) {
+        while (t != NULL && t -> data != x) {
             before = t;
             t = t -> link;
         }
@@ -84,11 +74,30 @@ void xoaX(nodePtr &h, TYPEINFO x) {
 
 void themChanLe(nodePtr &h, nodePtr &hChan, nodePtr &hLe) {
     nodePtr t = h;
-    for(; t != NULL; t = t -> link) {
-        if (t -> data % 2 == 0) {
-            themCuoi(hChan, t -> data);
-        } else {
-            themCuoi(hLe, t -> data);
+    for (; t -> link != NULL; t = t -> link) {
+        if (t -> data % 2 == 0) themDau(hChan, t -> data);
+        else themDau(hLe, t -> data);
+    }
+}
+
+void hopNhat(nodePtr &hChan, nodePtr &hLe, nodePtr &hMerge) {
+    hMerge = hChan;
+    nodePtr t = hMerge;
+    while (t -> link != NULL) {
+        t = t -> link;
+    }
+    t -> link = hLe;
+}
+
+void sapXep(nodePtr &h) {
+    if (h == NULL) return;
+    for (nodePtr i = h; i != NULL; i = i -> link) {
+        for (nodePtr j = h; j != NULL; j = j -> link) {
+            if (i -> data < j -> data) {
+                int temp = i -> data;
+                i -> data = j -> data;
+                j -> data = temp;
+            }
         }
     }
 }

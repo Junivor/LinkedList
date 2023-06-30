@@ -15,6 +15,8 @@ void xoaX(nodePtr &h, TYPEINFO x);
 void demNode(nodePtr h, TYPEINFO &dem);
 void hoanDoi(nodePtr &h);
 void themChanLe(nodePtr &h, nodePtr &hChan, nodePtr &hLe);
+void hopNhat(nodePtr &hChan, nodePtr &hLe, nodePtr &hMerge);
+void sapXep(nodePtr &h);
 void print(nodePtr h);
 
 
